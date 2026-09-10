@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura — find and remove duplicate photos and videos</title>
+<meta name="description" content="Aura finds exact and near-duplicate photos and videos on Windows and Linux. Everything runs on your computer. Free for exact duplicates, one-time purchase for Pro.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Aura — duplicate photo &amp; video cleaner">
+<meta property="og:description" content="Local-only duplicate finder for Windows and Linux. No cloud, no subscription.">
+<meta property="og:image" content="https://auradedupe.com/icon.svg">
+<style>
+  :root { color-scheme: light dark; --accent:#7000ff; --accent2:#9d7bff; --fg:#1a1a1a; --bg:#fff; --muted:#666; --card:#f6f4fb; --line:#e3ddf2; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e6e6e6; --bg:#121212; --muted:#9a9a9a; --card:#1c1826; --line:#2e2840; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; color:var(--fg); background:var(--bg); }
+  a { color:var(--accent2); }
+  .wrap { max-width:900px; margin:0 auto; padding:24px 20px 64px; }
+  header { display:flex; align-items:center; gap:12px; padding:8px 0 32px; }
+  header img { width:40px; height:40px; border-radius:10px; }
+  header nav { margin-left:auto; display:flex; gap:18px; font-size:14px; flex-wrap:wrap; }
+  header nav a { color:var(--fg); text-decoration:none; opacity:.8; }
+  .hero { text-align:center; padding:16px 0 32px; }
+  .hero img { width:96px; height:96px; border-radius:24px; box-shadow:0 12px 32px rgba(112,0,255,.28); }
+  h1 { font-size:36px; line-height:1.15; margin:20px 0 10px; }
+  .lead { font-size:18px; color:var(--muted); max-width:620px; margin:0 auto 24px; }
+  .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:600; border:1px solid var(--line); color:var(--fg); background:var(--card); }
+  .btn.primary { background:linear-gradient(135deg,#5a17c8,#7000ff 55%,#9d7bff); color:#fff; border:0; }
+  .btn small { display:block; font-weight:400; font-size:12px; opacity:.8; }
+  .note { font-size:13px; color:var(--muted); margin-top:12px; }
+  section { margin-top:48px; }
+  h2 { font-size:24px; margin:0 0 12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; color:var(--muted); font-size:15px; }
+  table { border-collapse:collapse; width:100%; font-size:15px; }
+  th, td { border-bottom:1px solid var(--line); padding:10px 8px; text-align:left; vertical-align:top; }
+  th { font-weight:600; }
+  td.y { color:var(--accent2); font-weight:600; }
+  .price { text-align:center; padding:28px 20px; }
+  .price .amount { font-size:44px; font-weight:700; }
+  .price .amount span { font-size:16px; font-weight:400; color:var(--muted); }
+  details { border-bottom:1px solid var(--line); padding:10px 0; }
+  summary { cursor:pointer; font-weight:600; }
+  footer { margin-top:56px; font-size:13px; color:var(--muted); display:flex; gap:18px; flex-wrap:wrap; }
+  .warn { background:#fff3cd; color:#664d03; border-radius:8px; padding:10px 14px; font-size:14px; }
+  @media (prefers-color-scheme: dark) { .warn { background:#3a2f0b; color:#ffe08a; } }
+  @media (max-width:520px) { h1 { font-size:28px; } .hero img { width:72px; height:72px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <img src="icon.svg" alt=""> <strong>Aura</strong>
+  <nav><a href="#download">Download</a><a href="#pro">Pro</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
+</header>
+
+<div class="hero">
+  <img src="icon.svg" alt="Aura icon">
+  <h1>Find the duplicates hiding in your photo library.</h1>
+  <p class="lead">Aura scans your folders for exact and near-identical photos and videos, shows them side by side, and lets you keep the best one. Everything runs on your computer. Nothing is uploaded, ever.</p>
+  <div class="btns" id="download">
+    <a class="btn primary" id="dl-win" href="https://github.com/utsnik/aura-releases/releases/latest">Download for Windows<small>64-bit installer</small></a>
+    <a class="btn" id="dl-appimage" href="https://github.com/utsnik/aura-releases/releases/latest">Download for Linux<small>AppImage · auto-updates</small></a>
+    <a class="btn" id="dl-deb" href="https://github.com/utsnik/aura-releases/releases/latest">Linux .deb<small>Debian / Ubuntu</small></a>
+  </div>
+  <p class="note">Version <span id="ver">0.4.89</span> · Free to use · <a href="https://github.com/utsnik/aura-releases/releases">All releases</a></p>
+</div>
+
+<section>
+  <h2>Why Aura</h2>
+  <div class="grid">
+    <div class="card"><h3>Private by design</h3><p>Hashing, similarity detection and previews all happen locally. No account, no telemetry, no cloud.</p></div>
+    <div class="card"><h3>Finds near-duplicates, not just copies</h3><p>Perceptual matching catches resized, re-encoded, edited and screenshot versions of the same photo or video.</p></div>
+    <div class="card"><h3>Safe deletion</h3><p>Aura always keeps at least one copy per group and can move removed files to a recycle folder instead of deleting outright.</p></div>
+    <div class="card"><h3>Built for big libraries</h3><p>Hundreds of thousands of files, network shares and RAW formats. Scans resume where they left off.</p></div>
+  </div>
+</section>
+
+<section id="pro">
+  <h2>Free vs Pro</h2>
+  <table>
+    <tr><th>Feature</th><th>Free</th><th>Pro</th></tr>
+    <tr><td>Exact duplicate detection, browse, select and delete</td><td class="y">✓</td><td class="y">✓</td></tr>
+    <tr><td>Junk cleanup (caches, leftovers, empty files)</td><td class="y">✓</td><td class="y">✓</td></tr>
+    <tr><td>Storage heatmap</td><td class="y">✓</td><td class="y">✓ + folder filtering</td></tr>
+    <tr><td>Similar photo &amp; video detection</td><td>20-group preview</td><td class="y">Unlimited</td></tr>
+    <tr><td>Smart Select and Bulk Clean</td><td>—</td><td class="y">✓</td></tr>
+    <tr><td>Photo quality ranking</td><td>—</td><td class="y">✓</td></tr>
+    <tr><td>AI search across your library</td><td>—</td><td class="y">✓</td></tr>
+    <tr><td>Save and load scan results</td><td>—</td><td class="y">✓</td></tr>
+  </table>
+
+  <div class="card price" style="margin-top:20px">
+    <div class="amount">$7.99 <span>one-time · launch price</span></div>
+    <p style="margin:6px 0 16px;color:var(--muted)">No subscription. Use it on every computer you own. Updates included.</p>
+    <a class="btn primary" href="buy.html">Buy Aura Pro</a>
+    <p class="note">Your license key arrives by email within a minute. Paste it under Settings → License in the app. 14-day no-questions refund.</p>
+  </div>
+</section>
+
+<section id="faq">
+  <h2>Questions</h2>
+  <details><summary>Does Aura upload my photos anywhere?</summary><p>No. The only network requests Aura makes are an update check against our release feed and, if you buy Pro, the Stripe checkout page in your browser. Your files, names and thumbnails never leave your machine. See the <a href="privacy.html">privacy policy</a>.</p></details>
+  <details><summary>Windows says "Windows protected your PC". Is that normal?</summary><p>Yes, for now. The installer is not yet signed with a paid code-signing certificate, so SmartScreen shows that warning for a new publisher. Click <em>More info</em>, then <em>Run anyway</em>. You can verify the download came from our <a href="https://github.com/utsnik/aura-releases/releases">GitHub releases</a>.</p></details>
+  <details><summary>Which Linux download should I pick?</summary><p>The AppImage. It runs on any distribution and updates itself. The .deb integrates with apt on Debian and Ubuntu but does not auto-update.</p></details>
+  <details><summary>Is there a Mac version?</summary><p>Not yet. macOS is planned once notarization is in place. Windows and Linux are supported today.</p></details>
+  <details><summary>What if I delete something by mistake?</summary><p>Turn on the recycle folder in Settings before cleaning and removed files are kept for 14 days. Aura never deletes the last copy in a group. Keep your own backups regardless.</p></details>
+  <details><summary>I bought Pro but no key arrived.</summary><p>Check spam for a message from keys@auradedupe.com. If it's not there after ten minutes, email <a href="mailto:utkingbank@gmail.com">utkingbank@gmail.com</a> from your purchase address and we'll resend it.</p></details>
+</section>
+
+<footer>
+  <span>© 2026 Jøran Igland, Norway</span>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+  <a href="support.html">Support</a>
+  <a href="https://github.com/utsnik/aura-releases/releases">Releases</a>
+</footer>
+</div>
+<script>
+(function(){
+  var base='https://github.com/utsnik/aura-releases/releases/download/';
+  function set(v){
+    document.getElementById('ver').textContent=v;
+    document.getElementById('dl-win').href=base+'v'+v+'/Aura_'+v+'_x64-setup.exe';
+    document.getElementById('dl-appimage').href=base+'v'+v+'/Aura_'+v+'_amd64.AppImage';
+    document.getElementById('dl-deb').href=base+'v'+v+'/Aura_'+v+'_amd64.deb';
+  }
+  set('0.4.89');
+  try{
+    fetch('https://github.com/utsnik/aura-releases/releases/latest/download/latest.json',{cache:'no-store'})
+      .then(function(r){return r.json()}).then(function(j){ if(j&&j.version) set(j.version); }).catch(function(){});
+  }catch(e){}
+})();
+</script>
+</body>
+</html>

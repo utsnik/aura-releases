@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
 <title>Aura — Privacy Policy</title>
 <style>
   :root { color-scheme: light dark; }
@@ -25,12 +26,12 @@
 <body>
 
 <h1>Aura — Privacy Policy</h1>
-<p class="meta"><strong>Last updated:</strong> 2026-07-16</p>
+<p class="meta"><strong>Last updated:</strong> 2026-09-10</p>
 <p class="meta"><strong>Controller:</strong> Jøran Igland, Norway &middot; <strong>Contact:</strong> <a href="mailto:utkingbank@gmail.com">utkingbank@gmail.com</a></p>
 
 <h2>The short version</h2>
-<p>Aura runs entirely on your Android or iOS device. Your photos, videos, file names, hashes, and
-folders <strong>never leave your phone</strong>. We don't have accounts, we don't
+<p>Aura runs entirely on your own device, whether that is a Windows or Linux computer or an Android or iOS phone. Your photos, videos, file names, hashes, and
+folders <strong>never leave your device</strong>. We don't have accounts, we don't
 track you, and we can't see your files.</p>
 
 <h2>What the app does with your data</h2>
@@ -42,7 +43,23 @@ track you, and we can't see your files.</p>
   <li><strong>Pro is unlocked on-device</strong> based on your Google Play or Apple App Store purchase (see below).</li>
 </ul>
 
-<h2>Purchases (Aura Pro)</h2>
+
+<h2>Desktop (Windows and Linux)</h2>
+<p>The desktop app works the same way: all scanning, hashing, similarity detection and previews happen on your computer, and no file content, file names, paths, thumbnails or metadata are transmitted anywhere. The desktop app makes exactly two kinds of network request:</p>
+<ul>
+  <li><strong>Update check.</strong> When you allow it, the app fetches a small signed manifest from our public release feed on GitHub (<code>github.com/utsnik/aura-releases</code>) to see whether a newer version exists. This is an ordinary HTTPS request; GitHub sees your IP address as with any download, and we receive nothing.</li>
+  <li><strong>AI search model.</strong> If you enable AI search, the app downloads the model files once. Your images are never sent to the model provider; the model runs locally.</li>
+</ul>
+<p><strong>Pro on desktop</strong> is a one-time purchase through <strong>Stripe</strong>, made in your web browser. Stripe handles the payment; we never see or store your card details. After payment, Stripe notifies our license service with the <strong>email address you entered at checkout</strong>, and we send a signed license key to that address via our email provider, <strong>Resend</strong>. The key is checked <strong>offline</strong> inside the app. We keep the purchase email address and the issued key so we can resend keys and process refunds; we do not use it for marketing.</p>
+<table>
+  <tr><th>Processor</th><th>Purpose</th><th>Data</th></tr>
+  <tr><td>Stripe</td><td>Processing your Pro purchase</td><td>Payment details (held by Stripe), checkout email, purchase record</td></tr>
+  <tr><td>Cloudflare</td><td>Hosts our license-issuing service</td><td>Checkout email and issued key, in transit</td></tr>
+  <tr><td>Resend</td><td>Delivering your license key by email</td><td>Your email address and the key</td></tr>
+  <tr><td>GitHub</td><td>Hosting downloads and the update manifest</td><td>IP address of the download request</td></tr>
+</table>
+
+<h2>Purchases on Android and iOS</h2>
 <p>Aura Pro is a one-time purchase. On Android, the purchase is processed entirely by
 <strong>Google Play Billing</strong>. Google handles the payment — <strong>we never see
 or store your card details</strong>. The app receives only a confirmation from Google
@@ -76,8 +93,8 @@ copy of any of it. Purchase/entitlement records are maintained by Google Play on
 or Apple on iOS, not by us.</p>
 
 <h2>Your rights (GDPR / EEA)</h2>
-<p>Because the app collects no personal data on our servers, there is nothing on our side
-to access, correct, or delete. For any data Google Play or Apple holds about your
+<p>On mobile, the app collects no personal data on our servers, so there is nothing on our side
+to access, correct, or delete. For desktop Pro purchases we hold your checkout email and license key; you may ask us to correct or delete them at the address below (deleting them means we can no longer resend your key). For any data Google Play or Apple holds about your
 purchase, use the relevant provider's own privacy controls. You may contact us at
 <a href="mailto:utkingbank@gmail.com">utkingbank@gmail.com</a> with any question, and you
 have the right to lodge a complaint with your data protection authority (in Norway,
