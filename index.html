@@ -66,7 +66,7 @@
     <a class="btn" id="dl-appimage" href="https://github.com/utsnik/aura-releases/releases/latest">Download for Linux<small>AppImage · auto-updates</small></a>
     <a class="btn" id="dl-deb" href="https://github.com/utsnik/aura-releases/releases/latest">Linux .deb<small>Debian / Ubuntu</small></a>
   </div>
-  <p class="note">Version <span id="ver">0.4.89</span> · Free to use · <a href="https://github.com/utsnik/aura-releases/releases">All releases</a></p>
+  <p class="note">Latest version <span id="ver">on GitHub</span> · Free to use · <a href="https://github.com/utsnik/aura-releases/releases">All releases</a></p>
 </div>
 
 <section>
@@ -108,7 +108,7 @@
   <details><summary>Which Linux download should I pick?</summary><p>The AppImage. It runs on any distribution and updates itself. The .deb integrates with apt on Debian and Ubuntu but does not auto-update.</p></details>
   <details><summary>Is there a Mac version?</summary><p>Not yet. macOS is planned once notarization is in place. Windows and Linux are supported today.</p></details>
   <details><summary>What if I delete something by mistake?</summary><p>Turn on the recycle folder in Settings before cleaning and removed files are kept for 14 days. Aura never deletes the last copy in a group. Keep your own backups regardless.</p></details>
-  <details><summary>I bought Pro but no key arrived.</summary><p>Check spam for a message from keys@auradedupe.com. If it's not there after ten minutes, email <a href="mailto:utkingbank@gmail.com">utkingbank@gmail.com</a> from your purchase address and we'll resend it.</p></details>
+  <details><summary>I bought Pro but no key arrived.</summary><p>Check spam for a message from keys@auradedupe.com. If it's not there after ten minutes, email <a href="mailto:aura.duplicate.cleaner@gmail.com">aura.duplicate.cleaner@gmail.com</a> from your purchase address and we'll resend it.</p></details>
 </section>
 
 <footer>
@@ -121,17 +121,23 @@
 </div>
 <script>
 (function(){
+  // Buttons default to the GitHub "latest release" page, which always exists.
+  // If the updater manifest is reachable we upgrade them to direct asset links.
+  var latestPage='https://github.com/utsnik/aura-releases/releases/latest';
   var base='https://github.com/utsnik/aura-releases/releases/download/';
-  function set(v){
-    document.getElementById('ver').textContent=v;
-    document.getElementById('dl-win').href=base+'v'+v+'/Aura_'+v+'_x64-setup.exe';
-    document.getElementById('dl-appimage').href=base+'v'+v+'/Aura_'+v+'_amd64.AppImage';
-    document.getElementById('dl-deb').href=base+'v'+v+'/Aura_'+v+'_amd64.deb';
-  }
-  set('0.4.89');
   try{
     fetch('https://github.com/utsnik/aura-releases/releases/latest/download/latest.json',{cache:'no-store'})
-      .then(function(r){return r.json()}).then(function(j){ if(j&&j.version) set(j.version); }).catch(function(){});
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){
+        if(!j||!j.version||!j.platforms) return;
+        var v=j.version, p=j.platforms;
+        document.getElementById('ver').textContent=v;
+        if(p['windows-x86_64']&&p['windows-x86_64'].url) document.getElementById('dl-win').href=p['windows-x86_64'].url;
+        if(p['linux-x86_64']&&p['linux-x86_64'].url){
+          document.getElementById('dl-appimage').href=p['linux-x86_64'].url;
+          document.getElementById('dl-deb').href=base+'v'+v+'/Aura_'+v+'_amd64.deb';
+        }
+      }).catch(function(){ /* keep the latest-release page links */ });
   }catch(e){}
 })();
 </script>
