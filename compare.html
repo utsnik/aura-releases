@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aura vs dupeGuru vs Czkawka vs AllDup — duplicate photo finders compared</title>
+<meta name="description" content="An honest comparison of Aura with dupeGuru, Czkawka, AllDup and Duplicate Cleaner Pro for finding duplicate and similar photos and videos. Written by Aura's developer.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<style>
+  :root { color-scheme: light dark; --accent:#7000ff; --accent2:#9d7bff; --fg:#1a1a1a; --bg:#fff; --muted:#666; --card:#f6f4fb; --line:#e3ddf2; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e6e6e6; --bg:#121212; --muted:#9a9a9a; --card:#1c1826; --line:#2e2840; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; color:var(--fg); background:var(--bg); }
+  a { color:var(--accent2); }
+  .wrap { max-width:900px; margin:0 auto; padding:24px 20px 64px; }
+  header { display:flex; align-items:center; gap:12px; padding:8px 0 32px; }
+  header img { width:40px; height:40px; border-radius:10px; }
+  header nav { margin-left:auto; display:flex; gap:18px; font-size:14px; flex-wrap:wrap; }
+  header nav a { color:var(--fg); text-decoration:none; opacity:.8; }
+  h1 { font-size:32px; line-height:1.2; margin:0 0 8px; }
+  h2 { font-size:22px; margin:40px 0 10px; }
+  h3 { font-size:17px; margin:24px 0 6px; }
+  .lead { color:var(--muted); font-size:17px; margin:0 0 20px; }
+  .tablewrap { overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:640px; }
+  th, td { border-bottom:1px solid var(--line); padding:9px 8px; text-align:left; vertical-align:top; }
+  th { font-weight:600; background:var(--card); }
+  td:first-child { font-weight:600; }
+  .y { color:var(--accent2); font-weight:600; }
+  .n { color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:14px 0; }
+  .card p { margin:6px 0; }
+  .muted { color:var(--muted); font-size:14px; }
+  .btn { display:inline-block; padding:12px 20px; border-radius:10px; text-decoration:none; font-weight:600; background:linear-gradient(135deg,#5a17c8,#7000ff 55%,#9d7bff); color:#fff; }
+  footer { margin-top:56px; font-size:13px; color:var(--muted); display:flex; gap:18px; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <img src="icon.svg" alt=""> <strong>Aura</strong>
+  <nav><a href="index.html#download">Download</a><a href="index.html#pro">Pro</a><a href="index.html#faq">FAQ</a><a href="support.html">Support</a></nav>
+</header>
+
+<h1>Aura vs dupeGuru vs Czkawka vs AllDup</h1>
+<p class="lead">Which duplicate finder should you use for a photo and video library? A comparison written by Aura's developer, so read it knowing that. Where a free tool is the better choice for you, this page says so.</p>
+
+<div class="card">
+  <p><strong>The short version.</strong></p>
+  <p>If you only need exact duplicates, all four tools work and Aura's free tier is as good as any. Pick whichever interface you like.</p>
+  <p>If you need <em>similar</em> photos (resized, re-edited, screenshots, bursts) or similar <em>videos</em>, and you care that nothing is uploaded, Aura Pro is built for exactly that. Czkawka is the strongest free alternative for similar images and is worth trying first if you are comfortable with a more technical interface.</p>
+</div>
+
+<h2>Feature comparison</h2>
+<p class="muted">Checked against each tool's own documentation in September 2026. Tools change; if something below is out of date, <a href="mailto:aura.duplicate.cleaner@gmail.com">tell me</a> and I'll fix it.</p>
+<div class="tablewrap">
+<table>
+  <tr><th>Feature</th><th>Aura</th><th>Czkawka</th><th>dupeGuru</th><th>AllDup</th><th>Duplicate Cleaner Pro</th></tr>
+  <tr><td>Exact duplicates</td><td class="y">Free</td><td class="y">Free</td><td class="y">Free</td><td class="y">Free</td><td>Paid</td></tr>
+  <tr><td>Similar photos (resized, edited, re-encoded)</td><td class="y">Pro</td><td class="y">Yes</td><td class="y">Yes, fuzzy</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+  <tr><td>Similar videos</td><td class="y">Pro</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td><td class="y">Yes</td></tr>
+  <tr><td>RAW formats (CR2, CR3, NEF, ARW, DNG)</td><td class="y">Yes, embedded previews</td><td class="y">Partial</td><td class="n">Limited</td><td class="n">Limited</td><td class="y">Yes</td></tr>
+  <tr><td>Pick the best copy automatically</td><td class="y">Smart Select, quality ranking</td><td>Rules based</td><td>Rules based</td><td>Rules based</td><td class="y">Selection assistant</td></tr>
+  <tr><td>Refuses to delete the last copy in a group</td><td class="y">Always</td><td>Depends on selection</td><td>Reference folder</td><td>Depends on selection</td><td>Depends on selection</td></tr>
+  <tr><td>Recycle folder with restore</td><td class="y">14 days, built in</td><td>System trash</td><td>System trash</td><td>System trash</td><td>System trash</td></tr>
+  <tr><td>Network shares and large libraries</td><td class="y">Tested to 38 TB on NFS</td><td class="y">Fast, Rust</td><td>Slow on large sets</td><td>Windows only</td><td>Windows only</td></tr>
+  <tr><td>Open source</td><td class="n">No</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
+  <tr><td>Windows</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td></tr>
+  <tr><td>Linux</td><td class="y">Yes</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
+  <tr><td>macOS</td><td>Planned</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
+  <tr><td>Android and iOS</td><td class="y">Yes, same engine</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
+  <tr><td>Uploads your files anywhere</td><td class="y">Never</td><td class="y">Never</td><td class="y">Never</td><td class="y">Never</td><td class="y">Never</td></tr>
+  <tr><td>Price</td><td>Free, Pro $7.99 once</td><td>Free</td><td>Free</td><td>Free, donation</td><td>About $30 to $40</td></tr>
+</table>
+</div>
+
+<h2>When to pick each one</h2>
+
+<h3>Pick Czkawka if</h3>
+<p>You're comfortable with a technical interface, you want open source, and you're on Windows, Linux or macOS. It is fast, it finds similar images and videos, and it is free. Its weaknesses are usability for a non-technical family member, no quality ranking to choose the best copy, and no phone apps. If Czkawka does what you need, use it. Aura's free tier exists because basic dedupe shouldn't cost money.</p>
+
+<h3>Pick dupeGuru if</h3>
+<p>You want a simple, well-known open source tool for exact and fuzzy photo matching and your library is small to medium. It has been around a long time and is easy to install. It does not detect similar videos and it slows down on very large collections.</p>
+
+<h3>Pick AllDup if</h3>
+<p>You're on Windows only and want a free, mature tool with a lot of options. It is thorough for exact matches. Its similar-image mode is basic and there is no video similarity or Linux version.</p>
+
+<h3>Pick Duplicate Cleaner Pro if</h3>
+<p>You're on Windows, want a polished commercial product, and are happy paying more for a broader feature set including audio and document deduping. It is a good tool. Aura costs a quarter of the price and adds Linux and phones, but has a narrower focus on photos and videos.</p>
+
+<h3>Pick Aura if</h3>
+<p>Your problem is specifically photos and videos, your library is large or lives on a NAS, you want similar videos as well as similar photos, and you want the tool to choose the best copy for you and refuse to do anything irreversible. It is also the only one here with the same engine on your phone. Everything runs on your own hardware, and Pro is a one-time $7.99.</p>
+
+<h2>What Aura does not do</h2>
+<div class="card">
+  <p>Being fair means listing the gaps too.</p>
+  <p><strong>Not open source.</strong> It is a one-person project funded by one-time purchases. The privacy claim is verifiable another way: run it behind a proxy and watch nothing leave.</p>
+  <p><strong>No macOS build yet.</strong> Notarization is planned. Windows and Linux are supported today.</p>
+  <p><strong>Photos and videos only.</strong> It won't dedupe your music, documents or source code. The tools above will.</p>
+  <p><strong>The Windows installer is not yet code-signed</strong>, so SmartScreen shows a warning on first run.</p>
+</div>
+
+<h2>Try it on one folder</h2>
+<p>The free tier finds exact duplicates with no signup and no time limit. Point it at one old shoot folder and compare the results with whatever you use today.</p>
+<p><a class="btn" href="index.html#download">Download Aura</a></p>
+
+<footer>
+  <span>© 2026 Jøran Igland, Norway</span>
+  <a href="index.html">Home</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="terms.html">Terms</a>
+  <a href="support.html">Support</a>
+</footer>
+</div>
+</body>
+</html>
