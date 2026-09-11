@@ -62,9 +62,10 @@
   <h1>Find the duplicates hiding in your photo library.</h1>
   <p class="lead">Aura scans your folders for exact and near-identical photos and videos, shows them side by side, and lets you keep the best one. Everything runs on your computer. Nothing is uploaded, ever.</p>
   <div class="btns" id="download">
-    <a class="btn primary" id="dl-win" href="https://github.com/utsnik/aura-releases/releases/latest">Download for Windows<small>64-bit installer</small></a>
-    <a class="btn" id="dl-appimage" href="https://github.com/utsnik/aura-releases/releases/latest">Download for Linux<small>AppImage · auto-updates</small></a>
-    <a class="btn" id="dl-deb" href="https://github.com/utsnik/aura-releases/releases/latest">Linux .deb<small>Debian / Ubuntu</small></a>
+    <a class="btn primary" id="dl-win" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Download for Windows<small>64-bit installer</small></a>
+    <a class="btn" id="dl-appimage" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Download for Linux<small>AppImage · auto-updates</small></a>
+    <a class="btn" id="dl-deb" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Linux .deb<small>Debian / Ubuntu</small></a>
+    <a class="btn primary" id="dl-all" href="https://github.com/utsnik/aura-releases/releases/latest">Download from GitHub<small>Windows and Linux builds</small></a>
   </div>
   <p class="note">Latest version <span id="ver">on GitHub</span> · Free to use · <a href="https://github.com/utsnik/aura-releases/releases">All releases</a></p>
 </div>
@@ -121,23 +122,23 @@
 </div>
 <script>
 (function(){
-  // Buttons default to the GitHub "latest release" page, which always exists.
-  // If the updater manifest is reachable we upgrade them to direct asset links.
-  var latestPage='https://github.com/utsnik/aura-releases/releases/latest';
-  var base='https://github.com/utsnik/aura-releases/releases/download/';
+  // One "Download from GitHub" button is shown until the GitHub API tells us the
+  // exact asset URLs for the latest release; then it swaps to per-platform buttons.
+  function byId(id){ return document.getElementById(id); }
   try{
-    fetch('https://github.com/utsnik/aura-releases/releases/latest/download/latest.json',{cache:'no-store'})
+    fetch('https://api.github.com/repos/utsnik/aura-releases/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(j){
-        if(!j||!j.version||!j.platforms) return;
-        var v=j.version, p=j.platforms;
-        document.getElementById('ver').textContent=v;
-        if(p['windows-x86_64']&&p['windows-x86_64'].url) document.getElementById('dl-win').href=p['windows-x86_64'].url;
-        if(p['linux-x86_64']&&p['linux-x86_64'].url){
-          document.getElementById('dl-appimage').href=p['linux-x86_64'].url;
-          document.getElementById('dl-deb').href=base+'v'+v+'/Aura_'+v+'_amd64.deb';
-        }
-      }).catch(function(){ /* keep the latest-release page links */ });
+      .then(function(rel){
+        var assets=(rel.assets||[]);
+        function find(re){ var a=assets.filter(function(x){return re.test(x.name);})[0]; return a?a.browser_download_url:null; }
+        var win=find(/x64-setup\.exe$/i), app=find(/\.AppImage$/i), deb=find(/\.deb$/i);
+        if(!win&&!app&&!deb) return;
+        if(rel.tag_name) byId('ver').textContent=String(rel.tag_name).replace(/^v/,'');
+        if(win){ byId('dl-win').href=win; byId('dl-win').hidden=false; }
+        if(app){ byId('dl-appimage').href=app; byId('dl-appimage').hidden=false; }
+        if(deb){ byId('dl-deb').href=deb; byId('dl-deb').hidden=false; }
+        byId('dl-all').hidden=true;
+      }).catch(function(){ /* keep the single GitHub button */ });
   }catch(e){}
 })();
 </script>
