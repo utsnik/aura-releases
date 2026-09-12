@@ -48,7 +48,7 @@
 <div class="card">
   <p><strong>The short version.</strong></p>
   <p>If you only need exact duplicates, all four tools work and Aura's free tier is as good as any. Pick whichever interface you like.</p>
-  <p>If you need <em>similar</em> photos (resized, re-edited, screenshots, bursts) or similar <em>videos</em>, and you care that nothing is uploaded, Aura Pro is built for exactly that. Czkawka is the strongest free alternative for similar images and is worth trying first if you are comfortable with a more technical interface.</p>
+  <p>If you need <em>similar</em> photos (resized, re-edited, screenshots, bursts) or similar <em>videos</em>, and you care that nothing is uploaded, Aura Pro is built for exactly that. Czkawka is the best of the free tools for similar images, but it is a power-user tool: no quality ranking, no guided cleanup, no recycle folder with restore, and no way to run it on a server and use it from another machine.</p>
 </div>
 
 <h2>Feature comparison</h2>
@@ -62,6 +62,7 @@
   <tr><td>RAW formats (CR2, CR3, NEF, ARW, DNG)</td><td class="y">Yes, embedded previews</td><td class="y">Partial</td><td class="n">Limited</td><td class="n">Limited</td><td class="y">Yes</td></tr>
   <tr><td>Pick the best copy automatically</td><td class="y">Smart Select, quality ranking</td><td>Rules based</td><td>Rules based</td><td>Rules based</td><td class="y">Selection assistant</td></tr>
   <tr><td>Refuses to delete the last copy in a group</td><td class="y">Always</td><td>Depends on selection</td><td>Reference folder</td><td>Depends on selection</td><td>Depends on selection</td></tr>
+  <tr><td>Run on a server or NAS box, use from any browser</td><td class="y">Yes, Windows service with tray icon, Linux systemd</td><td class="n">No</td><td class="n">No</td><td class="n">No</td><td class="n">No</td></tr>
   <tr><td>Recycle folder with restore</td><td class="y">14 days, built in</td><td>System trash</td><td>System trash</td><td>System trash</td><td>System trash</td></tr>
   <tr><td>Network shares and large libraries</td><td class="y">Tested to 38 TB on NFS</td><td class="y">Fast, Rust</td><td>Slow on large sets</td><td>Windows only</td><td>Windows only</td></tr>
   <tr><td>Open source</td><td class="n">No</td><td class="y">Yes</td><td class="y">Yes</td><td class="n">No</td><td class="n">No</td></tr>
@@ -77,7 +78,7 @@
 <h2>When to pick each one</h2>
 
 <h3>Pick Czkawka if</h3>
-<p>You're comfortable with a technical interface, you want open source, and you're on Windows, Linux or macOS. It is fast, it finds similar images and videos, and it is free. Its weaknesses are usability for a non-technical family member, no quality ranking to choose the best copy, and no phone apps. If Czkawka does what you need, use it. Aura's free tier exists because basic dedupe shouldn't cost money.</p>
+<p>You want open source and you're comfortable doing the judgement yourself. It is fast and it finds similar images and videos. What it doesn't do: rank the copies by quality and pick the keeper for you, guide a non-technical user through a cleanup, keep deleted files restorable for a set period, or run on a server so you can clean the NAS from a laptop. Its similar-video matching is also coarser than Aura's frame fingerprints. If you're happy with a desktop tool and manual selection, it costs nothing and does the job.</p>
 
 <h3>Pick dupeGuru if</h3>
 <p>You want a simple, well-known open source tool for exact and fuzzy photo matching and your library is small to medium. It has been around a long time and is easy to install. It does not detect similar videos and it slows down on very large collections.</p>
@@ -89,7 +90,7 @@
 <p>You're on Windows, want a polished commercial product, and are happy paying more for a broader feature set including audio and document deduping. It is a good tool. Aura costs a quarter of the price and adds Linux and phones, but has a narrower focus on photos and videos.</p>
 
 <h3>Pick Aura if</h3>
-<p>Your problem is mostly photos and videos, your library is large or lives on a NAS, you want similar videos as well as similar photos, and you want the tool to choose the best copy for you and refuse to do anything irreversible. It is also the only one here with the same engine on your phone. Everything runs on your own hardware, and Pro is a one-time $7.99.</p>
+<p>Your problem is mostly photos and videos, your library is large or lives on a NAS, you want similar videos as well as similar photos, and you want the tool to choose the best copy for you and refuse to do anything irreversible. It is the only one here that runs as a service on a Windows or Linux box and is used from a browser on any device, and the only one with the same engine on your phone. Everything runs on your own hardware, and Pro is a one-time $7.99.</p>
 
 <h2>What Aura does not do</h2>
 <div class="card">

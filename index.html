@@ -45,6 +45,7 @@
   .price .amount { font-size:44px; font-weight:700; }
   .price .amount span { font-size:16px; font-weight:400; color:var(--muted); }
   details { border-bottom:1px solid var(--line); padding:10px 0; }
+  code { background:rgba(128,128,128,.15); padding:1px 5px; border-radius:4px; font-size:14px; }
   summary { cursor:pointer; font-weight:600; }
   footer { margin-top:56px; font-size:13px; color:var(--muted); display:flex; gap:18px; flex-wrap:wrap; }
   .warn { background:#fff3cd; color:#664d03; border-radius:8px; padding:10px 14px; font-size:14px; }
@@ -56,7 +57,7 @@
 <div class="wrap">
 <header>
   <img src="icon.svg" alt=""> <strong>Aura</strong>
-  <nav><a href="#download">Download</a><a href="#pro">Pro</a><a href="compare.html">Compare</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
+  <nav><a href="#download">Download</a><a href="#server">Server</a><a href="#pro">Pro</a><a href="compare.html">Compare</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
 </header>
 
 <div class="hero">
@@ -80,6 +81,16 @@
     <div class="card"><h3>Safe deletion</h3><p>Aura always keeps at least one copy per group and can move removed files to a recycle folder instead of deleting outright.</p></div>
     <div class="card"><h3>Built for big libraries</h3><p>Hundreds of thousands of files, network shares and RAW formats. Scans resume where they left off.</p></div>
   </div>
+</section>
+
+<section id="server">
+  <h2>Run it on your server</h2>
+  <p>Your photos probably live on a NAS or a home server, not on the laptop you're sitting at. Aura can run <em>there</em>, headless, and you use it from a browser on any device in the house. The same build, no separate product.</p>
+  <div class="grid">
+    <div class="card"><h3>Windows</h3><p>Pick "Headless server" in the installer, set a password, done. Aura starts with Windows, sits in the tray, and serves the app at https://localhost:8443. Right-click the tray icon to open it or stop it.</p></div>
+    <div class="card"><h3>Linux</h3><p>Run <code>aura-desktop --setup</code> once to set a password, then <code>aura-desktop --server</code>. A systemd unit is included so it survives reboots. Works on any box that can see the share.</p></div>
+  </div>
+  <p class="note">Scanning stays local to the server. Other devices see only the web interface, protected by your password over HTTPS. Nothing is exposed to the internet unless you forward the port yourself.</p>
 </section>
 
 <section id="pro">
@@ -109,6 +120,7 @@
   <details><summary>Does Aura upload my photos anywhere?</summary><p>No. The only network requests Aura makes are an update check against our release feed and, if you buy Pro, the Stripe checkout page in your browser. Your files, names and thumbnails never leave your machine. See the <a href="privacy.html">privacy policy</a>.</p></details>
   <details><summary>Windows says "Windows protected your PC". Is that normal?</summary><p>Yes, for now. The installer is not yet signed with a paid code-signing certificate, so SmartScreen shows that warning for a new publisher. Click <em>More info</em>, then <em>Run anyway</em>. You can verify the download came from our <a href="https://github.com/utsnik/aura-releases/releases">GitHub releases</a>.</p></details>
   <details><summary>Which Linux download should I pick?</summary><p>The AppImage. It runs on any distribution and updates itself. The .deb integrates with apt on Debian and Ubuntu but does not auto-update.</p></details>
+  <details><summary>Can I run it on my NAS and use it from my laptop?</summary><p>Yes. Install it on any Windows or Linux machine that can reach the files, choose server mode, and open it in a browser from anywhere on your network. See <a href="#server">Run it on your server</a>. It does not install onto Synology or QNAP directly.</p></details>
   <details><summary>Is there a Mac version?</summary><p>Not yet. macOS is planned once notarization is in place. Windows and Linux are supported today.</p></details>
   <details><summary>What if I delete something by mistake?</summary><p>Turn on the recycle folder in Settings before cleaning and removed files are kept for 14 days. Aura never deletes the last copy in a group. Keep your own backups regardless.</p></details>
   <details><summary>I bought Pro but no key arrived.</summary><p>Check spam for a message from keys@auradedupe.com. If it's not there after ten minutes, email <a href="mailto:aura.duplicate.cleaner@gmail.com">aura.duplicate.cleaner@gmail.com</a> from your purchase address and we'll resend it.</p></details>
