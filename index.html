@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aura — find and remove duplicate photos and videos</title>
-<meta name="description" content="Aura finds exact and near-duplicate photos and videos on Windows and Linux. Everything runs on your computer. Free for exact duplicates, one-time purchase for Pro.">
+<meta name="description" content="Aura finds exact and near-duplicate photos and videos on Android, Windows and Linux. Everything runs on your device. Free for exact duplicates, one-time purchase for Pro.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <meta property="og:title" content="Aura — duplicate photo &amp; video cleaner">
-<meta property="og:description" content="Local-only duplicate finder for Windows and Linux. No cloud, no subscription.">
+<meta property="og:description" content="Local-only duplicate finder for Android, Windows and Linux. No cloud, no subscription.">
 <meta property="og:image" content="https://auradedupe.com/icon.svg">
 <style>
   :root { color-scheme: light dark; --accent:#7000ff; --accent2:#9d7bff; --fg:#1a1a1a; --bg:#fff; --muted:#666; --card:#f6f4fb; --line:#e3ddf2; }
@@ -57,18 +57,19 @@
 <div class="wrap">
 <header>
   <img src="icon.svg" alt=""> <strong>Aura</strong>
-  <nav><a href="#download">Download</a><a href="#server">Server</a><a href="#pro">Pro</a><a href="compare.html">Compare</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
+  <nav><a href="#download">Download</a><a href="https://play.google.com/store/apps/details?id=com.utsnik.aura">Android</a><a href="#server">Server</a><a href="#pro">Pro</a><a href="compare.html">Compare</a><a href="#faq">FAQ</a><a href="support.html">Support</a></nav>
 </header>
 
 <div class="hero">
   <img src="icon.svg" alt="Aura icon">
   <h1>Find the duplicates hiding in your photo library.</h1>
-  <p class="lead">Aura scans your folders for exact and near-identical photos and videos, shows them side by side, and lets you keep the best one. Everything runs on your computer. Nothing is uploaded, ever.</p>
+  <p class="lead">Aura scans your folders for exact and near-identical photos and videos, shows them side by side, and lets you keep the best one. Everything runs on your own device. Nothing is uploaded, ever.</p>
   <div class="btns" id="download">
     <a class="btn primary" id="dl-win" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Download for Windows<small>64-bit installer</small></a>
     <a class="btn" id="dl-appimage" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Download for Linux<small>AppImage · auto-updates</small></a>
     <a class="btn" id="dl-deb" href="https://github.com/utsnik/aura-releases/releases/latest" hidden>Linux .deb<small>Debian / Ubuntu</small></a>
     <a class="btn primary" id="dl-all" href="https://github.com/utsnik/aura-releases/releases/latest">Download from GitHub<small>Windows and Linux builds</small></a>
+    <a class="btn" id="dl-play" href="https://play.google.com/store/apps/details?id=com.utsnik.aura">Get it on Google Play<small>Android phones and tablets</small></a>
   </div>
   <p class="note">Latest version <span id="ver">on GitHub</span> · Free to use · <a href="https://github.com/utsnik/aura-releases/releases">All releases</a></p>
 </div>
@@ -121,6 +122,7 @@
   <details><summary>Windows says "Windows protected your PC". Is that normal?</summary><p>Yes, for now. The installer is not yet signed with a paid code-signing certificate, so SmartScreen shows that warning for a new publisher. Click <em>More info</em>, then <em>Run anyway</em>. You can verify the download came from our <a href="https://github.com/utsnik/aura-releases/releases">GitHub releases</a>.</p></details>
   <details><summary>Which Linux download should I pick?</summary><p>The AppImage. It runs on any distribution and updates itself. The .deb integrates with apt on Debian and Ubuntu but does not auto-update.</p></details>
   <details><summary>Can I run it on my NAS and use it from my laptop?</summary><p>Yes. Install it on any Windows or Linux machine that can reach the files, choose server mode, and open it in a browser from anywhere on your network. See <a href="#server">Run it on your server</a>. It does not install onto Synology or QNAP directly.</p></details>
+  <details><summary>Is there an Android app?</summary><p>Yes. <a href="https://play.google.com/store/apps/details?id=com.utsnik.aura">Aura is on Google Play</a>. It finds duplicate files, photos and videos on your phone, all on the device. Exact duplicates are free; Pro is a one-time in-app purchase through Google Play, separate from the desktop license.</p></details>
   <details><summary>Is there a Mac version?</summary><p>Not yet. macOS is planned once notarization is in place. Windows and Linux are supported today.</p></details>
   <details><summary>What if I delete something by mistake?</summary><p>Turn on the recycle folder in Settings before cleaning and removed files are kept for 14 days. Aura never deletes the last copy in a group. Keep your own backups regardless.</p></details>
   <details><summary>I bought Pro but no key arrived.</summary><p>Check spam for a message from keys@auradedupe.com. If it's not there after ten minutes, email <a href="mailto:aura.duplicate.cleaner@gmail.com">aura.duplicate.cleaner@gmail.com</a> from your purchase address and we'll resend it.</p></details>
@@ -132,6 +134,7 @@
   <a href="terms.html">Terms</a>
   <a href="support.html">Support</a>
   <a href="compare.html">Compare</a>
+  <a href="https://play.google.com/store/apps/details?id=com.utsnik.aura">Google Play</a>
   <a href="https://github.com/utsnik/aura-releases/releases">Releases</a>
 </footer>
 </div>
@@ -140,6 +143,9 @@
   // One "Download from GitHub" button is shown until the GitHub API tells us the
   // exact asset URLs for the latest release; then it swaps to per-platform buttons.
   function byId(id){ return document.getElementById(id); }
+  // On Android the desktop installers are useless: lead with Google Play.
+  var android=/Android/i.test(navigator.userAgent||'');
+  if(android){ var play=byId('dl-play'); play.className='btn primary'; byId('dl-all').className='btn'; play.parentNode.insertBefore(play, play.parentNode.firstChild); }
   try{
     fetch('https://api.github.com/repos/utsnik/aura-releases/releases/latest',{headers:{'Accept':'application/vnd.github+json'}})
       .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
@@ -153,6 +159,7 @@
         if(app){ byId('dl-appimage').href=app; byId('dl-appimage').hidden=false; }
         if(deb){ byId('dl-deb').href=deb; byId('dl-deb').hidden=false; }
         byId('dl-all').hidden=true;
+        if(android){ ['dl-win','dl-appimage','dl-deb'].forEach(function(id){ byId(id).className='btn'; }); }
       }).catch(function(){ /* keep the single GitHub button */ });
   }catch(e){}
 })();
